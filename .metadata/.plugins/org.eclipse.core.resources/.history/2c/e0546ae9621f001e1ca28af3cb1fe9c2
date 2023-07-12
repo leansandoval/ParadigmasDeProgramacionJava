@@ -1,0 +1,11 @@
+package parcial.campus;
+
+public interface EstadoCalificacion {
+
+	public void revisarCalificacion();
+
+	public void aprobar();
+
+	public void reprobar();
+
+}

@@ -1,0 +1,27 @@
+package edu.unlam.paradigmas.herencia.ej01;
+
+import java.math.BigDecimal;
+import org.junit.Assert;
+import org.junit.Test;
+
+public class CuentaCorrienteTests {
+
+	public static final double TOLERANCIA = 0.00000001;
+	
+	@Test
+	public void extraccionMenorAlSaldoDescubierto() {
+		CuentaCorriente cuentaCorriente = new CuentaCorriente(2000);
+		cuentaCorriente.depositar(5000);
+		cuentaCorriente.extraer(6000);
+		BigDecimal resultadoObtenido = cuentaCorriente.consultarSaldo();
+		BigDecimal resultadoEsperado = BigDecimal.ZERO;
+		Assert.assertEquals(resultadoObtenido, resultadoEsperado, TOLERANCIA);
+	}
+		
+	@Test
+	public void extraccionMayorAlSaldoDescubierto() {
+		CuentaCorriente cuentaCorriente = new CuentaCorriente(2000);
+		cuentaCorriente.depositar(5000);
+		Assert.assertFalse(cuentaCorriente.extraer(7500));
+	}
+}

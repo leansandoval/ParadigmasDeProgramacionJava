@@ -1,0 +1,40 @@
+package parcial.cocina;
+
+import java.time.LocalDate;
+
+public abstract class Empleado implements Tarea {
+
+	private int dni;
+	private LocalDate fechaIngreso;
+	public Tarea siguienteTarea;
+
+	public Empleado(int dni, LocalDate fechaIngreso) {
+		this.dni = dni;
+		this.fechaIngreso = fechaIngreso;
+	}
+
+	public int calcularAntiguedad() {
+		LocalDate fechaActual = LocalDate.now();
+		return fechaIngreso.until(fechaActual).getYears();
+	}
+
+	@Override
+	public void establecerSiguiente(Tarea siguienteTarea) {
+		this.siguienteTarea = siguienteTarea;
+	}
+
+	@Override
+	public void realizarTarea() {
+		if (siguienteTarea != null) {
+			siguienteTarea.realizarTarea();
+		}
+	}
+
+	public int getDni() {
+		return dni;
+	}
+
+	public LocalDate getFechaIngreso() {
+		return fechaIngreso;
+	}
+}

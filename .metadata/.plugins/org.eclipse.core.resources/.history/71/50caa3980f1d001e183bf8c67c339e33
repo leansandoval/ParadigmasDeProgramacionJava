@@ -1,0 +1,10 @@
+package parcial.productos;
+
+public class CantidadInvalidaException extends Exception {
+	
+	private String mensaje;
+	
+	public CantidadInvalidaException(String mensaje) {
+		super(mensaje);
+	}
+}

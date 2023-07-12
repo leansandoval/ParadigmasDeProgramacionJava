@@ -1,0 +1,25 @@
+package parcial.biblioteca;
+
+import java.util.Date;
+import java.util.List;
+
+public class Libro {
+
+	private int isbn;
+	private String nombre;
+	private Categoria categoria;
+	private List<Autor> autores;
+	private Date fechaPublicacion;
+	private int cantidadDePaginas;
+
+	public Libro(int isbn, String nombre, Categoria categoria, List<Autor> autores, Date fechaPublicacion,
+			int cantidadDePaginas) {
+		this.isbn = isbn;
+		this.nombre = nombre;
+		this.categoria = categoria;
+		this.autores = autores;
+		this.fechaPublicacion = fechaPublicacion;
+		this.cantidadDePaginas = cantidadDePaginas;
+	}
+
+}

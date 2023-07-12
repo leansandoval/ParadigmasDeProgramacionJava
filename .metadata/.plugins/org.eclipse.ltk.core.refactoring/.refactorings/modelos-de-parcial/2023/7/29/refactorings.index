@@ -1,0 +1,7 @@
+1688956301859	Delete element
+1688961180767	Rename method 'setSiguiente'
+1689017736635	Rename type 'EstadoCalificacionAprobada'
+1689017744191	Rename type 'EstadoCalificacionDesaprobada'
+1689021994159	Rename method 'reprobarCalificacion'
+1689021999980	Rename method 'aprobarCalificacion'
+1689022017846	Rename method 'revisarCalificacion'

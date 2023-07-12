@@ -1,0 +1,28 @@
+package parcial.productos;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Compra {
+	
+	private int id;
+	private List<Producto> productos = new ArrayList<>();
+	private final double total;
+	
+	private void agregarProductos(Producto producto, int cantidad) {
+		if(producto == null)
+			throw new NullPointerException();
+		
+		for (int i = 0; i < cantidad; i++) {
+			productos.add(producto);
+		}
+	}
+	
+	public Compra(int id) {
+		this.id = id;
+		this.productos = productos;
+		this.total = calcularTotalDeCompra();
+	}
+	
+	
+}

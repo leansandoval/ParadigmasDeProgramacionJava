@@ -1,0 +1,25 @@
+package parcial.campus;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Estudiante {
+
+	private final int legajo;
+	private String nombre;
+	private String apellido;
+	private LocalDate fechaDeIngreso;
+	private List<Asignatura> asignaturasEnCurso;
+	private List<Calificacion> calificaciones;
+
+	public Estudiante(int legajo, String nombre, String apellido, LocalDate fechaDeIngreso) {
+		this.legajo = legajo;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaDeIngreso = fechaDeIngreso;
+		this.asignaturasEnCurso = new ArrayList<>();
+		this.calificaciones = new ArrayList<>();
+	}
+
+}

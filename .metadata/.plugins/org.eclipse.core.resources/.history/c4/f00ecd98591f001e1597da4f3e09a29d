@@ -1,0 +1,5 @@
+package parcial.campus;
+
+public class CalificacionDesaprobada implements EstadoCalificacion {
+
+}

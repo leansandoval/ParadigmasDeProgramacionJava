@@ -1,0 +1,19 @@
+package parcial.campus;
+
+public class Calificacion {
+
+	private Estudiante estudiante;
+	private Asignatura asignatura;
+	private int notaPrimerParcial;
+	private int notaSegundoParcial;
+	private EstadoCalificacion estado;
+
+	public Calificacion(Estudiante estudiante, Asignatura asignatura) {
+		this.estudiante = estudiante;
+		this.asignatura = asignatura;
+		this.notaPrimerParcial = 0;
+		this.notaSegundoParcial = 0;
+		this.estado = new CalificacionPendiente();
+	}
+
+}

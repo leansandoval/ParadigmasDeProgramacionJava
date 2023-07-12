@@ -1,0 +1,25 @@
+package parcial.biblioteca;
+
+import java.util.Date;
+
+public class Autor {
+
+	private int id;
+	private String nombre;
+	private String apellido;
+	private Date fechaDeNacimiento;
+
+	public Autor(int id, String nombre, String apellido, Date fechaDeNacimiento) {
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.fechaDeNacimiento = fechaDeNacimiento;
+	}
+
+	@Override
+	public String toString() {
+		return "Autor [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaDeNacimiento="
+				+ fechaDeNacimiento + "]";
+	}
+
+}

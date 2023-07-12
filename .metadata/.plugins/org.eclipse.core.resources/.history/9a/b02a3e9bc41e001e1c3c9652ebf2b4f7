@@ -1,0 +1,6 @@
+package parcial.cocina;
+
+public class Ayudante extends Empleado implements Tarea {
+
+	
+}

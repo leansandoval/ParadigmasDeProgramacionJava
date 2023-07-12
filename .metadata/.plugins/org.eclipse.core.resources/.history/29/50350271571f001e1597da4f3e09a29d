@@ -1,0 +1,11 @@
+package parcial.campus;
+
+public class Calificacion {
+
+	private Estudiante estudiante;
+	private Asignatura asignatura;
+	private int notaPrimerParcial;
+	private int notaSegundoParcial;
+	private EstadoCalificacion estado;
+
+}

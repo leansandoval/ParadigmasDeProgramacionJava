@@ -1,0 +1,30 @@
+package parcial.productos;
+
+public class Cuenta {
+
+	private int id;
+	private String constrasenia;
+	private double saldo;
+
+	public Cuenta(int id, String constrasenia) {
+		this.id = id;
+		this.constrasenia = constrasenia;
+		this.saldo = 0;
+	}
+
+	public boolean depositar(double saldoADepositar) throws SaldoInvalidoException {
+		if (saldoADepositar <= 0)
+			return false;
+		this.saldo += saldoADepositar;
+		return true;
+	}
+
+	public boolean extraer(double saldoAExtraer) throws SaldoInvalidoException {
+		if (saldoAExtraer <= 0)
+			throw new SaldoInvalidoException("El saldo es incorrecto");
+		if (saldo < saldoAExtraer)
+			return false;
+		this.saldo -= saldoAExtraer;
+		return true;
+	}
+}

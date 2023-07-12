@@ -1,0 +1,13 @@
+package parcial.campus;
+
+import java.util.List;
+
+public class Asignatura {
+	
+	private int codigo;
+	private String nombre;
+	private List<Profesor> profesores;
+	
+	
+
+}

@@ -1,0 +1,21 @@
+package parcial.campus;
+
+public class CalificacionAprobada implements EstadoCalificacion {
+
+	@Override
+	public void revisarCalificacion() {
+		System.out.println(
+				"La calificacion fue determinada con su condicion final. No se encuentra en estado de pendiente.");
+	}
+
+	@Override
+	public void aprobarCalificacion() {
+		System.out.println("La calificacion se encuentra en estado de aprobada.");
+	}
+
+	@Override
+	public void reprobarCalificacion() {
+		System.out.println("La calificacion no se encuentra en estado de desaprobada.");
+	}
+
+}

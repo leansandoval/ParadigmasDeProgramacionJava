@@ -1,0 +1,41 @@
+package parcial.biblioteca;
+
+public class Usuario {
+
+	private final int codigo;
+	private String nombre;
+	private Categoria categoriaPreferida;
+	private double saldo;
+
+	public Usuario(int codigo, String nombre, Categoria categoriaPreferida, double saldo) {
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.categoriaPreferida = categoriaPreferida;
+		this.saldo = saldo;
+	}
+
+	public void consultarEjemplar(Ejemplar ejemplar) {
+		ejemplar.toString();
+	}
+
+	public int getCodigo() {
+		return codigo;
+	}
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public Categoria getCategoriaPreferida() {
+		return categoriaPreferida;
+	}
+
+	public double getSaldo() {
+		return saldo;
+	}
+
+}

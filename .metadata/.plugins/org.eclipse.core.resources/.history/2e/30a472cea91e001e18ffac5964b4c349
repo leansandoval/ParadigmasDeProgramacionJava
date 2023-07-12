@@ -1,0 +1,32 @@
+package edu.unlam.paradigmas.herencia.ej01;
+
+import java.math.BigDecimal;
+
+public class CuentaDeAhorro extends Cuenta {
+
+	private BigDecimal saldoReservado;
+
+	public CuentaDeAhorro() {
+		super();
+		this.saldoReservado = 0;
+	}
+
+	public boolean reservarSaldo(BigDecimal saldoAReservar) {
+		if(!extraer(saldoAReservar))
+			return false;
+		this.saldoReservado += saldoAReservar;
+		registrarTransaccion("Reserva", saldoAReservar);
+		return true;
+	}
+
+	public void reintegrarSaldoReservado() {
+		depositar(saldoReservado);
+		registrarTransaccion("Reintegro", saldoReservado);
+		this.saldoReservado = 0;
+	}
+
+	public BigDecimal consultarSaldoReservado() {
+		return this.saldoReservado;
+	}
+
+}

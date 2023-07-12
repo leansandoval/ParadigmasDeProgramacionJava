@@ -1,0 +1,22 @@
+package parcial.biblioteca;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+	public static void main(String[] args) throws FechaInvalidaException {
+		Categoria novela = new Categoria(1, "Novela");
+		Autor juanPerez = new Autor(1, "Juan", "Pérez", LocalDate.of(1980, 5, 15));
+		List<Autor> autores = new ArrayList<>();
+		autores.add(juanPerez);
+		Libro libro = new Libro(123456, "Libro 1", novela, autores, LocalDate.of(2022, 1, 1), 200);
+		Ejemplar ejemplar = new Ejemplar(1, libro);
+		Usuario usuario = new Usuario(1, "Usuario 1", novela, 100.0);
+		LocalDate fechaDevolucion = LocalDate.of(2023, 7, 31);
+		Pedido pedido1 = new Pedido(usuario, fechaDevolucion);
+
+	}
+
+}

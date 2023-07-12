@@ -1,0 +1,14 @@
+package edu.unlam.paradigmas.herencia.ej01;
+
+public class TarjetaDeDebito {
+
+	private Cuenta cuentaAsociada;
+
+	public TarjetaDeDebito(Cuenta cuentaAsociada) {
+		this.cuentaAsociada = cuentaAsociada;
+	}
+
+	public void comprar(BigDecimal monto) {
+		cuentaAsociada.extraer(monto);
+	}
+}

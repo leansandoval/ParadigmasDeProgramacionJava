@@ -1,0 +1,18 @@
+package parcial.campus;
+
+import java.util.List;
+
+public class Asignatura {
+
+	private int codigo;
+	private String nombre;
+	private List<Profesor> profesores;
+	
+	public Asignatura(int codigo, String nombre, List<Profesor> profesores) {
+		this.codigo = codigo;
+		this.nombre = nombre;
+		this.profesores = profesores;
+	}
+
+	
+}

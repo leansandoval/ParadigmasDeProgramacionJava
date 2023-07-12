@@ -1,0 +1,22 @@
+package parcial.cocina;
+
+import java.time.LocalDate;
+
+public class Ayudante extends Empleado implements Tarea {
+
+	public Ayudante(int dni, LocalDate fechaIngreso) {
+		super(dni, fechaIngreso);
+	}
+
+	@Override
+	public void establecerSiguiente(Tarea siguienteTarea) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public boolean realizarTarea() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

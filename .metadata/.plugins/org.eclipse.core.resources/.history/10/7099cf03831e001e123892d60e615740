@@ -1,0 +1,17 @@
+package parcial.biblioteca;
+
+public class EstadoDisponible implements EstadoEjemplar {
+
+	@Override
+	public void prestarEjemplar(Ejemplar ejemplar) {
+        System.out.println("El libro " + libro.getTitulo() + " ha sido prestado.");
+        libro.cambiarEstado(new EstadoPrestado());
+	}
+
+	@Override
+	public void devolverEjemplar(Ejemplar ejemplar) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

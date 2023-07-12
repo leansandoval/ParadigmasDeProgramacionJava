@@ -1,0 +1,104 @@
+package parcial.biblioteca;
+
+import java.time.LocalDate;
+import java.util.Arrays;
+
+public class Main {
+	public static void main(String[] args) {
+		
+		// Categorías
+		Categoria novela = new Categoria(1, "Novela");
+		Categoria cienciaFiccion = new Categoria(2, "Ciencia ficcion");
+		Categoria biografia = new Categoria(3, "Biografía");
+
+		// Autores
+		Autor gabrielGarciaMarquez = new Autor(1, "Gabriel", "Garcia Marquez", LocalDate.of(1927, 3, 6));
+		Autor jKRowling = new Autor(2, "J.K.", "Rowling", LocalDate.of(1965, 7, 31));
+		Autor stephenKing = new Autor(3, "Stephen", "King", LocalDate.of(1947, 9, 21));
+
+		// Libros
+		Libro cienAniosDeSoledad1 = new Libro(9780307476463L, "Cien anios de soledad", novela,
+				Arrays.asList(gabrielGarciaMarquez), LocalDate.of(1967, 5, 30), 432);
+		Libro harryPotterYLaPiedraFilosofal = new Libro(9788478888566L, "Harry Potter y la piedra filosofal",
+				cienciaFiccion, Arrays.asList(jKRowling), LocalDate.of(1997, 6, 26), 256);
+		Libro elResplandor = new Libro(9788497593793L, "El resplandor", cienciaFiccion, Arrays.asList(stephenKing),
+				LocalDate.of(1977, 1, 28), 512);
+		Libro cienAniosDeSoledad2 = new Libro(9788401352347L, "Cien anios de soledad", novela,
+				Arrays.asList(gabrielGarciaMarquez), LocalDate.of(1969, 9, 1), 416);
+
+		// Ejemplares
+		Ejemplar ejemplar1 = new Ejemplar(1, cienAniosDeSoledad1);
+		Ejemplar ejemplar2 = new Ejemplar(2, cienAniosDeSoledad1);
+		Ejemplar ejemplar3 = new Ejemplar(3, harryPotterYLaPiedraFilosofal);
+		Ejemplar ejemplar4 = new Ejemplar(4, elResplandor);
+		Ejemplar ejemplar5 = new Ejemplar(5, cienAniosDeSoledad2);
+		Ejemplar ejemplar6 = new Ejemplar(6, cienAniosDeSoledad2);
+
+		// Usuarios
+		Usuario johnDoe = new Usuario(1, "John Doe", novela, 200000);
+		Usuario janeSmith = new Usuario(2, "Jane Smith", cienciaFiccion, 50);
+		Usuario michaelJohnson = new Usuario(3, "Michael Johnson", biografia, 200);
+
+		// Pedidos
+		LocalDate fechaDevolucion1 = LocalDate.of(2023, 7, 31);
+		LocalDate fechaDevolucion2 = LocalDate.of(2023, 8, 15);
+		LocalDate fechaDevolucion3 = LocalDate.of(2023, 8, 20);
+
+		Pedido pedido1;
+		Pedido pedido2;
+		Pedido pedido3;
+
+		try {
+			pedido1 = new Pedido(johnDoe, fechaDevolucion1);
+			pedido2 = new Pedido(janeSmith, fechaDevolucion2);
+			pedido3 = new Pedido(michaelJohnson, fechaDevolucion3);
+
+			pedido1.agregarEjemplar(ejemplar1);
+			pedido1.agregarEjemplar(ejemplar3);
+
+			pedido2.agregarEjemplar(ejemplar2);
+			pedido2.agregarEjemplar(ejemplar4);
+
+			pedido3.agregarEjemplar(ejemplar5);
+			pedido3.agregarEjemplar(ejemplar6);
+
+			System.out.println("--- Libros ---");
+			System.out.println(cienAniosDeSoledad1.toString());
+			System.out.println();
+			System.out.println(harryPotterYLaPiedraFilosofal.toString());
+			System.out.println();
+			System.out.println(elResplandor.toString());
+			System.out.println();
+			System.out.println(cienAniosDeSoledad2.toString());
+
+			System.out.println();
+			System.out.println();
+
+			System.out.println("--- Ejemplares ---");
+			System.out.println(ejemplar1.toString());
+			System.out.println();
+			System.out.println(ejemplar2.toString());
+			System.out.println();
+			System.out.println(ejemplar3.toString());
+			System.out.println();
+			System.out.println(ejemplar4.toString());
+			System.out.println();
+			System.out.println(ejemplar5.toString());
+			System.out.println();
+			System.out.println(ejemplar6.toString());
+
+			System.out.println();
+			System.out.println();
+
+			
+			System.out.println(johnDoe.toString());
+
+			pedido1.procesarPedido(pedido1);
+			
+			System.out.println(johnDoe.toString());
+
+		} catch (FechaInvalidaException e) {
+			e.printStackTrace();
+		}
+	}
+}

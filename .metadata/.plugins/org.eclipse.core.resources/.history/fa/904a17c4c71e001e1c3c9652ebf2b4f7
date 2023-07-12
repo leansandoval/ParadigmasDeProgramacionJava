@@ -1,0 +1,20 @@
+package parcial.cocina;
+
+import java.time.LocalDate;
+
+public class Lavacopa extends Empleado {
+
+	public Lavacopa(int dni, LocalDate fechaIngreso) {
+		super(dni, fechaIngreso);
+	}
+
+	@Override
+	public boolean realizarTarea() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	private void lavarCopa() {
+		System.out.println("Lavacopa: Lavando una copa");
+	}
+}

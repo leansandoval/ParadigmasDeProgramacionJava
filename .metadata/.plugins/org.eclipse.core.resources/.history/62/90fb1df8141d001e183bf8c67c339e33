@@ -1,0 +1,14 @@
+package parcial.productos;
+
+public class Electrodomestico extends Producto {
+
+	private String fabricante;
+	private String paisOrigen;
+
+	public Electrodomestico(String nombre, double precio, int cantDisponible, String frabricante, String paisOrigen) {
+		super(nombre, precio, cantDisponible);
+		this.fabricante = fabricante;
+		this.paisOrigen = paisOrigen;
+	}
+
+}

@@ -1,0 +1,21 @@
+package parcial.cocina;
+
+import java.time.LocalDate;
+
+public class Ayudante extends Empleado {
+
+	public Ayudante(int dni, LocalDate fechaIngreso) {
+		super(dni, fechaIngreso);
+	}
+
+	@Override
+	public void realizarTarea() {
+		pelarPapas();
+		super.realizarTarea();
+	}
+
+	private void pelarPapas() {
+		System.out.println("Ayudante de cocina: Pelando papas");
+	}
+
+}

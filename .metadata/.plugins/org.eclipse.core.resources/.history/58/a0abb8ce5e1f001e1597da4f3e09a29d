@@ -1,0 +1,23 @@
+package parcial.campus;
+
+public class CalificacionDesaprobada implements EstadoCalificacion {
+
+	@Override
+	public void revisarCalificacion() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void aprobarCalificacion() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reprobarCalificacion() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

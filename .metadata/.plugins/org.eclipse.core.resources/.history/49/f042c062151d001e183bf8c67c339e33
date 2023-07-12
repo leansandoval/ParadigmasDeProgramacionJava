@@ -1,0 +1,20 @@
+package parcial.productos;
+
+import java.sql.Date;
+
+public class Comestible extends Producto {
+	
+	public Date fechaDeVencimiento;
+
+	public Comestible(String nombre, double precio, int cantDisponible, Date fechaDeVencimiento) {
+		super(nombre, precio, cantDisponible);
+		this.fechaDeVencimiento = fechaDeVencimiento;
+	}
+
+	@Override
+	public void chequearCalidad() {
+		pr
+	}
+	
+
+}

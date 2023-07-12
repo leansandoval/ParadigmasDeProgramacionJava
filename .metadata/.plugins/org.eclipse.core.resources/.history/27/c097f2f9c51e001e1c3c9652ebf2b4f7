@@ -1,0 +1,28 @@
+package parcial.cocina;
+
+import java.time.LocalDate;
+
+public class Empleado {
+
+	private int dni;
+	private LocalDate fechaIngreso;
+
+	public Empleado(int dni, LocalDate fechaIngreso) {
+		this.dni = dni;
+		this.fechaIngreso = fechaIngreso;
+	}
+
+	public int calcularAntiguedad() {
+		LocalDate fechaActual = LocalDate.now();
+		return fechaIngreso.until(fechaActual).getYears();
+	}
+
+	public int getDni() {
+		return dni;
+	}
+
+	public LocalDate getFechaIngreso() {
+		return fechaIngreso;
+	}
+
+}

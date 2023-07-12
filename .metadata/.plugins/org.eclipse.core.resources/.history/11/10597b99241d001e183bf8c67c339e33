@@ -1,0 +1,20 @@
+package parcial.productos;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Usuario usuarioLeandro = new Usuario(1, "Leandro", "Sandoval", new Cuenta(1, "leandro123"));
+		CarritoDeCompra carritoDeCompra = new CarritoDeCompra(1, usuarioLeandro);
+
+		usuarioLeandro.getCuenta().depositar(100_000);
+
+		Producto televisor = new Electrodomestico("Televisor", 35000, 10, "Samsung", "Argentina");
+		Producto fideosArcor = new Comestible("Fideos Arcor", 530.50, 100, new Date());
+		Producto cifCrema = new Limpieza("Cif Crema", 600, 50);
+		
+		carritoDeCompra.agregarProducto();
+	}
+}

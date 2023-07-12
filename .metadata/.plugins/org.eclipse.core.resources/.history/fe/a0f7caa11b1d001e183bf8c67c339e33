@@ -1,0 +1,27 @@
+package parcial.productos;
+
+import java.util.Date;
+//import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
+
+public class Comestible extends Producto {
+	
+	public Date fechaDeVencimiento;
+
+	public Comestible(String nombre, double precio, int cantDisponible, Date fechaDeVencimiento) {
+		super(nombre, precio, cantDisponible);
+		this.fechaDeVencimiento = fechaDeVencimiento;
+	}
+
+	@Override
+	public void chequearCalidad() {
+		System.out.println("El producto comestible se encuentra en condiciones");
+	}
+	
+    public boolean estaVencido() {
+        LocalDate fechaActual = LocalDate.now();
+        Date fechaActualDate = Date.from(fechaActual.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        return fechaDeVencimiento.before(fechaActualDate);
+    }
+}

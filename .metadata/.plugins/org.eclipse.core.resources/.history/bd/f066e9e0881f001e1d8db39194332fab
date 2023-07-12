@@ -1,0 +1,58 @@
+package parcial.campus;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class Main {
+
+	public static void main(String[] args) throws ProfesorInvalidoException, NotaInvalidaException, AsignaturaInvalidaException {
+
+		Estudiante leandro = new Estudiante(1, "Leandro", "Sandoval", LocalDate.of(2020, 10, 22));
+
+		List<Profesor> profesoresParadigas = new ArrayList<>();
+		List<Profesor> profesoresArquitectura = new ArrayList<>();
+		List<Profesor> profesoresRedes = new ArrayList<>();
+
+		Profesor federico = new Profesor(1, "Federico", "Gasoir");
+		Profesor lucas = new Profesor(2, "Lucas", "Videla");
+		Profesor hernan = new Profesor(3, "Hernan", "Lanzilotta");
+		Profesor edgardo = new Profesor(4, "Edgardo", "Gho");
+		Profesor carlos = new Profesor(5, "Carlos", "Binker");
+
+		profesoresParadigas.add(federico);
+		profesoresParadigas.add(lucas);
+		profesoresParadigas.add(hernan);
+
+		profesoresArquitectura.add(edgardo);
+
+		profesoresRedes.add(carlos);
+
+		Asignatura arquitecturaDeComputadoras = new Asignatura(3635, "Arquitectura de Computadoras",
+				profesoresArquitectura);
+		Asignatura paradigmasDeProgramacion = new Asignatura(3646, "Paradigmas de Programacion", profesoresParadigas);
+		Asignatura redesDeCompuradoras = new Asignatura(3648, "Redes de Compuradoras", profesoresRedes);
+
+		Calificacion calificacionArquitecturaDeComputadoras = new Calificacion(leandro, arquitecturaDeComputadoras);
+		Calificacion calificacionParadigmasDeProgramacion = new Calificacion(leandro, paradigmasDeProgramacion);
+		Calificacion calificacionRedesDeComputadoras = new Calificacion(leandro, redesDeCompuradoras);
+
+		leandro.agregarAsignatura(arquitecturaDeComputadoras);
+		leandro.agregarAsignatura(paradigmasDeProgramacion);
+		leandro.agregarAsignatura(redesDeCompuradoras);
+
+		lucas.determinarCondicionFinal(calificacionParadigmasDeProgramacion, 8, 9);
+		edgardo.determinarCondicionFinal(calificacionArquitecturaDeComputadoras, 2, 4);
+		//carlos.determinarCondicionFinal(calificacionRedesDeComputadoras, 7, 7);
+		// lucas.determinarCondicionFinal(calificacionParadigmasDeProgramacion, 4, 2);
+		// edgardo.determinarCondicionFinal(calificacionParadigmasDeProgramacion, 7, 8);
+
+		leandro.mostrarAsignaturasEnCurso();
+		System.out.println();
+		leandro.mostrarAsignaturasCursadas();
+
+		if (leandro.agregarAsignatura(paradigmasDeProgramacion) == false)
+			System.out.println("La asignatura ya se encuentra aprobada por el alumno.");
+	}
+
+}

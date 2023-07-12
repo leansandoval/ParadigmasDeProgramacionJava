@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;edu.unlam.paradigmas.tp.entidades.InterfazUsuario.mostrar()&apos; to &apos;mostrarItinerario&apos;&#x0D;&#x0A;- Original project: &apos;TurismoArgentino&apos;&#x0D;&#x0A;- Original element: &apos;edu.unlam.paradigmas.tp.entidades.InterfazUsuario.mostrar()&apos;&#x0D;&#x0A;- Renamed element: &apos;edu.unlam.paradigmas.tp.entidades.InterfazUsuario.mostrarItinerario()&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;mostrar&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;edu.unlam.paradigmas.tp.entidades{InterfazUsuario.java[InterfazUsuario~mostrar" name="mostrarItinerario" references="true" stamp="1688964842126" version="1.0"/>
+</session>

@@ -1,0 +1,41 @@
+package parcial.biblioteca;
+
+public class Ejemplar {
+
+	private int id;
+	private Libro libro;
+	private boolean estaDisponible;
+
+	public Ejemplar(int id, Libro libro) {
+		super();
+		this.id = id;
+		this.libro = libro;
+		this.estaDisponible = true;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public Libro getLibro() {
+		return libro;
+	}
+
+	public boolean estaDisponible() {
+		return estaDisponible == true;
+	}
+
+	public void enviarAlEstante() {
+		this.estaDisponible = true;
+	}
+
+	public void setEstaDisponible(boolean estaDisponible) {
+		this.estaDisponible = estaDisponible;
+	}
+
+	@Override
+	public String toString() {
+		return "Ejemplar: " + id + "\n" + libro;
+	}
+
+}

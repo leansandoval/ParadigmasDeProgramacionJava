@@ -1,0 +1,8 @@
+package parcial.cocina;
+
+public interface Tarea {
+
+	public void establecerSiguiente(Tarea siguienteTarea);
+	
+	public void realizarTarea();
+}

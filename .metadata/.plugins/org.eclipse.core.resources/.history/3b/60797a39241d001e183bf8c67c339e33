@@ -1,0 +1,13 @@
+package parcial.productos;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Usuario usuarioLeandro = new Usuario(1, "Leandro", "Sandoval", new Cuenta(1, "leandro123"));
+		CarritoDeCompra carritoDeCompra = new CarritoDeCompra(1, usuarioLeandro);
+
+		Producto televisor = new Electrodomestico("Televisor", 35000, 10, null, null);
+
+		carritoDeCompra.agregarProducto();
+	}
+}

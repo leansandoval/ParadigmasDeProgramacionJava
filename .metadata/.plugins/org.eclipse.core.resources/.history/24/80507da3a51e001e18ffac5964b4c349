@@ -1,0 +1,39 @@
+package edu.unlam.paradigmas.entradasalida.ej03;
+
+public class Resolucion {
+
+	final static int COL_PESO = 0;
+	final static int COL_ALTURA = 1;
+
+	public void resolver(String nombreArchivo) {
+
+		Archivo archivo = new Archivo(nombreArchivo);
+		Sumo[] datosLectura = archivo.leerArchivoSumos();
+
+		int[] datosEscritura = new int[datosLectura.length];
+
+		for (int i = 0; i < datosLectura.length; i++) {
+
+			int pesoParticipante = datosLectura[i][COL_PESO];
+			int alturaParticipante = datosLectura[i][COL_ALTURA];
+			int cantVecesGanador = 0;
+
+			for (int j = 0; j < datosLectura.length; j++)
+				if (i != j)
+					if (esDominante(pesoParticipante, alturaParticipante, datosLectura[j][COL_PESO],
+							datosLectura[j][COL_ALTURA]))
+						cantVecesGanador++;
+
+			datosEscritura[i] = cantVecesGanador;
+		}
+
+		archivo.grabarArchivo(datosEscritura);
+	}
+
+	public boolean esDominante(int pesoParticipante, int alturaParticipante, int pesoContrincante,
+			int alturaContrincante) {
+		return (pesoParticipante > pesoContrincante && alturaParticipante > alturaContrincante)
+				|| (pesoParticipante == pesoContrincante && alturaParticipante > alturaContrincante)
+				|| (pesoParticipante > pesoContrincante && alturaParticipante == alturaContrincante);
+	}
+}

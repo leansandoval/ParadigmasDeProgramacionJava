@@ -1,0 +1,10 @@
+package parcial.biblioteca;
+
+public class Ejemplar {
+	
+	private int id;
+	private Libro libro;
+	private boolean estaDisponible;
+	
+	
+}

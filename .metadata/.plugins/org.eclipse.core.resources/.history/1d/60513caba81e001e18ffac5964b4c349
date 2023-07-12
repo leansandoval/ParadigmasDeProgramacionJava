@@ -1,0 +1,58 @@
+package edu.unlam.paradigmas.herencia.ej01;
+
+import java.math.BigDecimal;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class Cuenta {
+
+	protected BigDecimal saldo;
+	protected Set<Transaccion> transacciones = new TreeSet<>();
+
+	public Cuenta() {
+		this.saldo = 0;
+	}
+
+	protected static boolean puedoExtraer(double saldo, double montoAExtraer) {
+		return saldo > 0 && montoAExtraer > 0 && montoAExtraer <= saldo;
+	}
+	
+	private static boolean puedoDepositar(double montoADepositar) {
+		return montoADepositar > 0;
+	}
+	
+	public boolean depositar(double montoADepositar) {
+		if (!puedoDepositar(montoADepositar))
+			return false;
+		this.saldo += montoADepositar;
+		registrarTransaccion("Deposito", montoADepositar);
+		return true;
+	}
+
+	public boolean extraer(BigDecimal totalDebitar) {
+		if(!puedoExtraer(this.saldo, totalDebitar))
+			return false;
+		this.saldo -= totalDebitar;
+		registrarTransaccion("Extraccion", totalDebitar);
+		return true;
+	}
+
+	public double consultarSaldo() {
+		return this.saldo;
+	}
+
+	public synchronized boolean transferir(double montoAExtraer, Cuenta cuentaDestino) {
+		return extraer(montoAExtraer)? cuentaDestino.depositar(montoAExtraer) : false;
+	}
+
+	public void registrarTransaccion(String motivo, double monto) {
+		transacciones.add(new Transaccion(motivo, monto, Fecha.getFechaActual()));
+	}
+
+	public void mostrarTransacciones() {
+		System.out.println("Transacciones");
+		for (Transaccion transaccion : transacciones)
+			System.out.println(transaccion);
+	}
+
+}

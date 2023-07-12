@@ -1,0 +1,24 @@
+package parcial.cocina;
+
+import java.time.LocalDate;
+
+public class Main {
+
+	public static void main(String[] args) {
+
+		Empleado cocinero = new Cocinero(12345678, LocalDate.of(2021, 1, 1));
+		Empleado ayudante = new Ayudante(87654321, LocalDate.of(2021, 2, 1));
+		Empleado lavacopa = new Lavacopa(56781234, LocalDate.of(2021, 3, 1));
+		Empleado mesero = new Mesero(98765432, LocalDate.of(2021, 4, 1));
+
+		cocinero.establecerSiguiente(ayudante);
+		ayudante.establecerSiguiente(lavacopa);
+		lavacopa.establecerSiguiente(mesero);
+		System.out.println();
+		System.out.println();
+		cocinero.realizarTarea();
+		lavacopa.realizarTarea();
+		mesero.realizarTarea();
+		ayudante.realizarTarea();
+	}
+}

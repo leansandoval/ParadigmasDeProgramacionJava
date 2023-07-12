@@ -1,0 +1,31 @@
+package edu.unlam.paradigmas.herencia.ej01;
+
+import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.LocalDateTime;
+
+public class PlazoFijo {
+
+	private BigDecimal monto;
+	private LocalDateTime fechaInicio;
+
+	public PlazoFijo(BigDecimal monto) {
+		this.monto = monto;
+		this.fechaInicio = LocalDateTime.now();
+	}
+
+	private BigDecimal calcularInteresMensual() {
+		LocalDateTime fechaActual = LocalDateTime.now();
+		Duration duracion = Duration.between(fechaInicio, fechaActual);
+		long mesesTranscurridos = duracion.toDays() / 30;
+		// 36 % anual, osea que por mes es un 36 / 12 = 3%
+		BigDecimal interesMensual = monto.multiply(new BigDecimal("0.03")).multiply(new BigDecimal(mesesTranscurridos));
+		return interesMensual;
+	}
+
+	public void reintegrarConInteres(Cuenta cuentaAsociada) {
+		BigDecimal interes = calcularInteresMensual();
+		cuentaAsociada.depositar(monto.add(interes));
+	}
+
+}

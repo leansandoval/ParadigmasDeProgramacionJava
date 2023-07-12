@@ -1,0 +1,27 @@
+package edu.unlam.paradigmas.herencia.ej01;
+
+import java.math.BigDecimal;
+
+public class CuentaCorriente extends Cuenta {
+
+	private final double saldoDescubierto;
+
+	public CuentaCorriente(double saldoDescubierto) {
+		super();
+		if (saldoDescubierto < 0)
+			throw new IllegalArgumentException("El saldo descubierto no puede ser negativo");
+		this.saldoDescubierto = saldoDescubierto;
+	}
+
+	@Override
+	public boolean extraer(BigDecimal montoAExtraer) {
+		return puedoExtraer(this.saldo + this.saldoDescubierto, montoAExtraer)
+				? super.extraer(montoAExtraer > saldo ? consultarSaldo() : montoAExtraer)
+				: false;
+	}
+
+	public double getSaldoDescubierto() {
+		return this.saldoDescubierto;
+	}
+
+}

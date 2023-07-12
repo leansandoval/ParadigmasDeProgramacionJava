@@ -1,0 +1,23 @@
+package parcial.productos;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CarritoDeCompra {
+
+	private int id;
+	private Usuario usuario;
+	private List<Producto> productos;
+	private List<Compra> compras;
+	private double totalAPagar;
+	
+	public CarritoDeCompra(int id, Usuario usuario) {
+		this.id = id;
+		this.usuario = usuario;
+		this.productos = new ArrayList<>();
+		this.compras = new ArrayList<>();
+		this.totalAPagar = 0;
+	}
+	
+	
+}

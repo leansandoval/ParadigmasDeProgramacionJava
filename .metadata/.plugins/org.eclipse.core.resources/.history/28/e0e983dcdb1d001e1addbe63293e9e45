@@ -1,0 +1,55 @@
+package parcial.biblioteca;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public class Libro {
+
+	private int isbn;
+	private String nombre;
+	private Categoria categoria;
+	private List<Autor> autores;
+	private LocalDate fechaPublicacion;
+	private int cantidadDePaginas;
+
+	public Libro(int isbn, String nombre, Categoria categoria, List<Autor> autores, LocalDate fechaPublicacion,
+			int cantidadDePaginas) {
+		this.isbn = isbn;
+		this.nombre = nombre;
+		this.categoria = categoria;
+		this.autores = autores;
+		this.fechaPublicacion = fechaPublicacion;
+		this.cantidadDePaginas = cantidadDePaginas;
+	}
+
+	public int getIsbn() {
+		return isbn;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public List<Autor> getAutores() {
+		return autores;
+	}
+
+	public LocalDate getFechaPublicacion() {
+		return fechaPublicacion;
+	}
+
+	public int getCantidadDePaginas() {
+		return cantidadDePaginas;
+	}
+
+	@Override
+	public String toString() {
+		return "ISBN: " + isbn + "\nNombre: " + nombre + "\n" + categoria + "\nAutores:" + autores
+				+ "\nFecha de Publicacion: " + fechaPublicacion + "\nCantidad de paginas: " + cantidadDePaginas;
+	}
+
+}

@@ -1,0 +1,141 @@
+package edu.unlam.paradigmas.tp.entidades;
+
+import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
+
+public class InterfazUsuario {
+
+	public void saludarUsuario(String nombreUsuario) {
+		System.out.println("========================== Bienvenido a Turismo Argentino ==========================\n");
+		System.out.println("Nombre visitante: " + nombreUsuario);
+	}
+
+	public void mostrarRecursos(Usuario usuario) {
+		System.out.println("\nTus recursos:");
+		System.out.println(
+				String.format("%-24s", "-Presupuesto: ") + "$" + String.format("%.2f", +usuario.getPresupuesto()));
+		System.out.println(
+				String.format("%-24s", "-Tiempo: ") + String.format("%.2f", usuario.getTiempoDisponible()) + " horas");
+		System.out.println(String.format("%-24s", "-Tu preferencia: ")
+				+ Atraccion.formatearTipoAtraccion(usuario.getAtraccionFavorita()) + "\n");
+	}
+
+	public void sugerirPromociones(List<Promocion> promociones, Map<String, Atraccion> atracciones, Usuario usuario,
+			Itinerario itinerario) {
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		SistemaDeSugerencia sistema = new SistemaDeSugerencia();
+		char respuestaUsuario;
+		Promocion promocion;
+		mostrarRecursos(usuario);
+		PromocionIteratorImpl promocionIt = new PromocionIteratorImpl(promociones, usuario, atracciones);
+		while (promocionIt.hasNext()) {
+			try {
+				promocion = promocionIt.next();
+				System.out.println(promocion);
+				do {
+					System.out.println("Aceptas esta sugerencia? Ingrese S o N");
+					respuestaUsuario = Character.toUpperCase(scanner.next().charAt(0));
+				} while (respuestaUsuario != 'S' && respuestaUsuario != 'N');
+				if (respuestaUsuario == 'S') {
+					sistema.procesarCompraPromocion(usuario, promocion, atracciones, itinerario);
+					mostrarRecursos(usuario);
+				}
+
+			} catch (NoSuchElementException e) {
+				System.out.println("No podes seguir comprando PROMOCIONES, te mostramos atracciones disponibles:");
+			}
+			System.out.println("\n");
+		}
+
+	}
+
+	public void sugerirAtracciones(Map<String, Atraccion> atracciones, Usuario usuario, Itinerario itinerario) {
+		@SuppressWarnings("resource")
+		Scanner scanner = new Scanner(System.in);
+		SistemaDeSugerencia sistema = new SistemaDeSugerencia();
+		char respuestaUsuario;
+		Atraccion atraccion;
+		mostrarRecursos(usuario);
+		AtraccionIteratorImpl atraccionIt = new AtraccionIteratorImpl(atracciones, usuario);
+		while (atraccionIt.hasNext()) {
+
+			atraccion = atraccionIt.next();
+			if (atraccion != null) {
+				System.out.println(atraccion);
+				do {
+					System.out.println("Aceptas esta sugerencia? Ingrese S o N");
+					respuestaUsuario = Character.toUpperCase(scanner.next().charAt(0));
+				} while (respuestaUsuario != 'S' && respuestaUsuario != 'N');
+				if (respuestaUsuario == 'S') {
+					sistema.procesarCompraAtraccion(atraccion, usuario, itinerario);
+					mostrarRecursos(usuario);
+				}
+			} else
+				System.out.println("\nNo hay mas opciones para tus recursos\n");
+		}
+		System.out.println("====================================================================================\n");
+	}
+
+	private void mostrarTituloDeColumnas() {
+		System.out.println(String.format("%15s", "Nombre") + String.format("%31s", "Duracion")
+				+ String.format("%28s", "Precio") + "\n");
+	}
+
+	private void mostrarAtraccion(Atraccion atraccion) {
+		System.out.println('\t' + String.format("%-30s", atraccion.getNombre().replaceAll("(?=[A-Z])", " "))
+				+ String.format("%-30s", atraccion.getTiempo() + " horas") + "$" + atraccion.getPrecio());
+	}
+
+	private void mostrarPromociones(Itinerario itinerario) {
+		System.out.println("============================== Promociones adquiridas ==============================\n");
+		int numeroDePromocion = 1;
+		List<Promocion> promociones = itinerario.getPromociones();
+		if (promociones.size() > 0) {
+			for (Promocion promocion : promociones) {
+				System.out.println(String.format("%24s", "Promocion Nro " + numeroDePromocion++) + "\n");
+				mostrarTituloDeColumnas();
+				for (Atraccion atraccion : promocion.getAtracciones())
+					mostrarAtraccion(atraccion);
+				System.out.println("\n");
+			}
+			System.out.println(String.format("%-38s", "- Total de promociones")
+					+ String.format("%-30s", itinerario.obtenerDuracionPromociones() + " horas") + "$"
+					+ itinerario.obtenerPrecioPromociones());
+		} else
+			System.out.println("El usuario no adquirio ninguna promocion");
+	}
+
+	private void mostrarAtracciones(Itinerario itinerario) {
+		System.out.println("\n============================== Atracciones adquiridas ==============================\n");
+		List<Atraccion> atracciones = itinerario.getAtracciones();
+		if (atracciones.size() > 0) {
+			mostrarTituloDeColumnas();
+			for (Atraccion atraccion : atracciones)
+				mostrarAtraccion(atraccion);
+			System.out.println("\n" + String.format("%-38s", "- Total de atracciones")
+					+ String.format("%-30s", itinerario.obtenerDuracionAtracciones() + " horas") + "$"
+					+ itinerario.obtenerPrecioAtracciones());
+		} else
+			System.out.println("El usuario no adquirio ninguna atraccion");
+	}
+
+	private void mostrarTotalPorUsuario(Itinerario itinerario) {
+		System.out.println("\n" + String.format("%-38s", "- Total por usuario:")
+				+ String.format("%-30s",
+						(itinerario.obtenerDuracionPromociones() + itinerario.obtenerDuracionAtracciones()) + " horas")
+				+ "$" + (itinerario.obtenerPrecioPromociones() + itinerario.obtenerPrecioAtracciones()));
+
+	}
+
+	public void mostrarItinerario(Itinerario itinerario) {
+		System.out.println("Resultado de tu compra\n");
+		System.out.println("Usuario: " + itinerario.getUsuario().getNombre() + "\n");
+		mostrarPromociones(itinerario);
+		mostrarAtracciones(itinerario);
+		mostrarTotalPorUsuario(itinerario);
+		System.out.println("\n====================================================================================\n");
+	}
+}

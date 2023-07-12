@@ -1,0 +1,33 @@
+package parcial.productos;
+
+public abstract class Producto {
+
+	private final String nombre;
+	private double precio;
+	private int cantDisponible;
+
+	public Producto(String nombre, double precio, int cantDisponible) {
+		this.nombre = nombre;
+		this.precio = precio;
+		this.cantDisponible = cantDisponible;
+	}
+
+	public abstract void chequearCalidad();
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public double getPrecio() {
+		return precio;
+	}
+
+	public int getCantDisponible() {
+		return cantDisponible;
+	}
+
+	public void setCantDisponible(int cantDisponible) {
+		this.cantDisponible = cantDisponible;
+	}
+
+}

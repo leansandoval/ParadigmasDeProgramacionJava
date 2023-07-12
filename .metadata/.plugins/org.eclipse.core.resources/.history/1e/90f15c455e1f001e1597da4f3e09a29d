@@ -1,0 +1,76 @@
+package parcial.campus;
+
+import java.util.Objects;
+
+public class Profesor {
+
+	private int legajo;
+	private String nombre;
+	private String apellido;
+
+	public Profesor(int legajo, String nombre, String apellido) {
+		this.legajo = legajo;
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
+
+	public boolean determinarCondicionFinal(Calificacion calificacion, int notaPrimerParcial, int notaSegundoParcial)
+			throws ProfesorInvalidoException {
+
+		if (calificacion == null)
+			throw new NullPointerException();
+
+		if (!(calificacion.getEstado() instanceof CalificacionPendiente))
+			return false;
+
+		if (!calificacion.getAsignatura().getProfesores().contains(this))
+			throw new ProfesorInvalidoException("El profesor no corresponde con la asignatura");
+
+		calificacion.setNotaPrimerParcial(notaPrimerParcial);
+		calificacion.setNotaSegundoParcial(notaSegundoParcial);
+		calificacion
+				.cambiarDeEstado(calificacion.getNotaPrimerParcial() >= 4 && calificacion.getNotaSegundoParcial() >= 4
+						? new CalificacionAprobada()
+						: new CalificacionDesaprobada());
+
+		notificarCalificacionFinalAAlumno(calificacion);
+
+		return true;
+	}
+
+	private void notificarCalificacionFinalAAlumno(Calificacion calificacion) {
+		calificacion.getEstudiante().getCalificaciones().add(calificacion);
+
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellido, legajo, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Profesor other = (Profesor) obj;
+		return Objects.equals(apellido, other.apellido) && legajo == other.legajo
+				&& Objects.equals(nombre, other.nombre);
+	}
+
+	public int getLegajo() {
+		return legajo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+}

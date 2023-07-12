@@ -1,0 +1,92 @@
+package parcial.campus;
+
+import java.util.Objects;
+
+public class Profesor {
+
+	private int legajo;
+	private String nombre;
+	private String apellido;
+
+	public Profesor(int legajo, String nombre, String apellido) {
+		this.legajo = legajo;
+		this.nombre = nombre;
+		this.apellido = apellido;
+	}
+
+	public boolean determinarCondicionFinal(Calificacion calificacion, int notaPrimerParcial, int notaSegundoParcial)
+			throws ProfesorInvalidoException, NotaInvalidaException, AsignaturaInvalidaException {
+
+		if (calificacion == null)
+			throw new NullPointerException();
+
+		if (!(calificacion.getEstado() instanceof CalificacionPendiente))
+			return false;
+
+		if (!calificacion.getAsignatura().getProfesores().contains(this))
+			throw new ProfesorInvalidoException("El profesor no corresponde con la asignatura");
+
+		if (!calificacion.getEstudiante().getAsignaturasEnCurso().contains(calificacion.getAsignatura()))
+			throw new AsignaturaInvalidaException(
+					"El alumno no se encuentra anotado a la asignatura que se quiere calificar");
+
+		if (notaPrimerParcial < 2 && notaPrimerParcial > 10 || notaSegundoParcial < 2 && notaSegundoParcial > 10)
+			throw new NotaInvalidaException("Las notas no corresponden al rango valido.");
+
+		asignarNotas(calificacion, notaPrimerParcial, notaSegundoParcial);
+		calificacion
+				.cambiarDeEstado(calificacion.getNotaPrimerParcial() >= 4 && calificacion.getNotaSegundoParcial() >= 4
+						? new CalificacionAprobada()
+						: new CalificacionDesaprobada());
+
+		calificacion.getEstudiante().getAsignaturasEnCurso().remove(calificacion.getAsignatura());
+		notificarCalificacionFinalAAlumno(calificacion);
+
+		return true;
+	}
+
+	private void notificarCalificacionFinalAAlumno(Calificacion calificacion) {
+		calificacion.getEstudiante().getCalificaciones().add(calificacion);
+	}
+
+	private void asignarNotas(Calificacion calificacion, int notaPrimerParcial, int notaSegundoParcial) {
+		calificacion.setNotaPrimerParcial(notaPrimerParcial);
+		calificacion.setNotaSegundoParcial(notaSegundoParcial);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellido, legajo, nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Profesor other = (Profesor) obj;
+		return Objects.equals(apellido, other.apellido) && legajo == other.legajo
+				&& Objects.equals(nombre, other.nombre);
+	}
+
+	@Override
+	public String toString() {
+		return nombre + " " + apellido;
+	}
+
+	public int getLegajo() {
+		return legajo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+}
