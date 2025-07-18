@@ -1,5 +1,5 @@
 # Paradigmas de Programación - Java
-Proyectos y ejercicios resueltos en Java de la materia Paradigmas de Programacion (2023). Realizados en el Primer Cuatrimestre 2023
+Proyectos y ejercicios resueltos en Java de la materia Paradigmas de Programacion (3646). Realizados en el Primer Cuatrimestre 2023.
 
 ## Unidad 1 - Paradigmas de Programación
 
